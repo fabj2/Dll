@@ -12,7 +12,8 @@ int main()
 
 {
     Dll dll;
-    Iterator* t = new Iterator(dll.getBegin());
+    Iterator b;
+    b = dll.getBegin();
     int i;
 
     cout << "----Testing pushFront " << endl;
@@ -31,31 +32,27 @@ int main()
 
 
     cout << "----Testing removeNode " << endl;
-    t->setPos(dll.getBegin());
-    dll.removeNode(*t);
-    t->goNext();
-    t->goNext(); 
-    dll.removeNode(*t);
+    b.setPos(dll.getBegin());
+    dll.removeNode(b);
+    b.goNext();
+    b.goNext(); 
+    dll.removeNode(b);
     dll.printMe();
 
     cout << "----Testing pushNode " << endl;
-    dll.pushNode(*t, 1, 3);
+    dll.pushNode(b, 1, 3);
     dll.printMe();
 
     cout << "----Testing getDistance " << endl;
-    t->setPos(dll.getBegin());
-    t->goNext();
-    t->goNext();
-    t->goNext();
+    b.setPos(dll.getBegin());
+    b.goNext();
+    b.goNext();
+    b.goNext();
 
-    cout << "Distance from end is : " << t->end() << endl;
-    cout << "Distance from begin is : " << t->begin() << endl;
 
-    Iterator* v = new Iterator();
-    v->setPos(dll.getBegin());
-    //v->goNext();
+    Iterator e = dll.end();
 
-    cout << "Distance between iterators v and t is : " << t->getDistance(*v, *t) << endl;
+    cout << "Distance between iterators b and e is : " << e.getDistance(b, e) << endl;
 
 
     int pause;

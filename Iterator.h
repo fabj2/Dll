@@ -24,11 +24,11 @@ public:
     void goNext();
     void goPrev();
     int getVal();
-    int getVal(Iterator&);
-    int getDistance(Iterator&);
-    int getDistance(Iterator&, Iterator&);
+    int getVal(const Iterator&);
+    int getDistance(const Iterator&);
+    int getDistance(const Iterator&, const Iterator&);
     void setPos(Node* n) { currN = new Node(); currN = n;}
     Node* currNode() { return currN; }
-    int end();
-    int begin();
+    int dToEnd();
+    int dToBegin();
 };

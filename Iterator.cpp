@@ -15,9 +15,10 @@ Iterator::Iterator()
 
 Iterator::Iterator(Node* n)
 {
-    currN = new Node();
+    //currN = new Node();
     currN = n;
 }
+
 
 
 void Iterator::goNext()
@@ -35,31 +36,32 @@ int Iterator::getVal()
     return currN->data;
 }
 
-int Iterator::getVal(Iterator& it)
+int Iterator::getVal(const Iterator& it)
 {
     return it.currN->data;
 }
 
-int Iterator::getDistance(Iterator& it)
+int Iterator::getDistance(const Iterator& it)
 {
     return getDistance(*this, it);    
 }
 
-int Iterator::getDistance(Iterator& it1, Iterator& it2)
+int Iterator::getDistance(const Iterator& a, const Iterator& b)
 {
 
     int distance = 0;
     bool done = false;
 
+    Iterator it1 = a;
+    Iterator it2 = b;
+
+
     if (&it1 == &it2) return distance;
 
-    if (it1.currNode()->next == nullptr) return end();
-    if (it2.currNode()->next == nullptr) return end();
-    if (it1.currNode()->prev == 0) 
-    {
-            return begin();
-    }
-    if (it2.currNode()->next == nullptr) return begin();
+    if (it1.currNode()->prev == nullptr) return it2.dToBegin();
+    if (it2.currNode()->next == nullptr) return it1.dToEnd();
+    if (it1.currNode()->prev == 0) return it2.dToBegin();
+    if (it2.currNode()->next == nullptr) return it1.dToBegin();
 
     while ((&it1 != &it2) && !done )
     {
@@ -101,7 +103,7 @@ int Iterator::getDistance(Iterator& it1, Iterator& it2)
     return distance;      
 }
 
-int Iterator::end()
+int Iterator::dToEnd()
 {
     Iterator* tempI = new Iterator();
     tempI->setPos(this->currNode());
@@ -118,7 +120,7 @@ int Iterator::end()
 
 }
 
-int Iterator::begin()
+int Iterator::dToBegin()
 {
     Iterator* tempI = new Iterator();
     tempI->setPos(this->currNode());

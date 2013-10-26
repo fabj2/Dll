@@ -11,17 +11,15 @@ private:
     Node* front;
     Node* back;
     int length;
-    Iterator* itBegin;
-    Iterator* itEnd;
 protected:
 public:
     Dll(); 
+    Iterator begin();
+    Iterator end();
     void pushFront(int);
     void pushBack(int);
     void pushNode(Iterator&, int val, int pos);
     void removeNode(Iterator&);
-    int end();
-    int begin();
     Node* getBegin() { return front; }
     Node* getEnd() { return back; }
     int getLength() { return length; }

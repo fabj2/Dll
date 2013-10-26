@@ -13,9 +13,19 @@ Dll::Dll()
     back = 0;
     length = 0;
 
-    itBegin = new Iterator(front);
-    itEnd = new Iterator(back);
+    //itBegin = new Iterator(front);
+    //itEnd = new Iterator(back);
 
+}
+
+Iterator Dll::end() 
+{
+    return Iterator(back);
+}
+
+Iterator Dll::begin() 
+{
+    return Iterator(front);
 }
 
 void Dll::pushFront(int val)
@@ -36,8 +46,6 @@ void Dll::pushFront(int val)
 
     }
 
-    itBegin->setPos(front);
-    itEnd->setPos(back);
 
 
     length++;
@@ -51,7 +59,6 @@ void Dll::pushBack(int val)
     t->data = val;
     back = t;
 
-    itEnd->setPos(back);
 
     length++;
 }
@@ -109,23 +116,22 @@ void Dll::removeNode(Iterator& it)
         it.currNode()->next->prev = it.currNode()->prev;
         //it = it.currNode()->next;
     }
-    itBegin->setPos(front);
+//    itBegin->setPos(front);
     length--;
 
 }
 
 void Dll::printMe()
 {
-    itBegin->setPos(front);
+    Iterator t;
+    t.setPos(front);
 
 
     for (int i = 0; i < length; i++)
     {
-        cout << "Node value at position " << i << " is: " << itBegin->getVal() << endl;
-        itBegin->goNext();
+        cout << "Node value at position " << i << " is: " << t.getVal() << endl;
+        t.goNext();
     }
-
-    itBegin->setPos(front);
 
 
 }
