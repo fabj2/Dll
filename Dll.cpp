@@ -62,8 +62,10 @@ void Dll::pushBack(int val)
 
     length++;
 }
-void Dll::pushNode(Iterator& it, int val, int pos)
+void Dll::pushNode(const Iterator& iter, int val, int pos)
 {
+    Iterator it;
+    it = iter;
     it.setPos(front);
     
     for(int i = 0; i < pos-1; i++)
@@ -95,6 +97,7 @@ void Dll::pushNode(Iterator& it, int val, int pos)
 
 void Dll::removeNode(Iterator& it)
 {
+
     if (it.currNode() == front)
     {
         auto t = new Node();
@@ -102,6 +105,7 @@ void Dll::removeNode(Iterator& it)
         front = front->next;
         front->prev = nullptr;
         it = it.currNode()->next;
+        it.setPos(front);
         delete t;
     } else if (it.currNode() == back)
     {

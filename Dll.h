@@ -18,7 +18,9 @@ public:
     Iterator end();
     void pushFront(int);
     void pushBack(int);
-    void pushNode(Iterator&, int val, int pos);
+//    void popFront(Iterator&);
+//    void popBack(Iterator&);
+    void pushNode(const Iterator&, int val, int pos);
     void removeNode(Iterator&);
     Node* getBegin() { return front; }
     Node* getEnd() { return back; }
