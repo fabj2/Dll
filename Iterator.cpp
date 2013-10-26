@@ -23,7 +23,7 @@ Iterator::Iterator(Node* n)
 
 void Iterator::goNext()
 {
-    if (currN->next) currN = currN->next;
+    if (currN && currN->next) currN = currN->next;
 }
 
 void Iterator::operator++()
@@ -33,7 +33,7 @@ void Iterator::operator++()
 
 void Iterator::goPrev()
 {
-    if (currN->prev) currN = currN->prev; 
+    if (currN && currN->prev) currN = currN->prev; 
 }
 
 void Iterator::operator--()
@@ -62,7 +62,7 @@ Iterator Iterator::operator-(int i)
 
 int Iterator::getVal()
 {
-    return currN->data;
+    if (currN) return currN->data;
 }
 
 int Iterator::getVal(const Iterator& it)

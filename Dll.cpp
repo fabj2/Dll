@@ -12,10 +12,6 @@ Dll::Dll()
     front = 0;
     back = 0;
     length = 0;
-
-    //itBegin = new Iterator(front);
-    //itEnd = new Iterator(back);
-
 }
 
 Iterator Dll::end() 
@@ -31,6 +27,7 @@ Iterator Dll::begin()
 void Dll::pushFront(int val)
 {
     Node* t = new Node();
+
     t->next = front;
     t->prev = nullptr;
     t->data = val;
@@ -43,7 +40,6 @@ void Dll::pushFront(int val)
     } else {
         front->prev = t;
         front = t;
-
     }
 
 
@@ -53,32 +49,53 @@ void Dll::pushFront(int val)
 
 void Dll::pushBack(int val)
 {
-    Node* t = new Node();
-    back->next = t;
+    auto t = new Node();
+
     t->next = nullptr;
-    t->data = val;
     t->prev = back;
-    back = t;
+    t->data = val;
+
+    if (back == nullptr) 
+    {
+        front = back = t;
+        back->next = nullptr;
+    } else {
+        back->next = t;
+        back = t;
+    }
+
+
 
     length++;
 }
+
+
 void Dll::pushNode(const Iterator& iter, int val, int pos)
 {
     Iterator it;
     it = iter;
     it.setPos(front);
     
+    if (length == 0)
+    {
+        //cout << "Pushing from back" << endl;
+        pushBack(val);
+        return;
+    }
+
     for(int i = 0; i < pos-1; i++)
     {
        it.goNext();
     }
-
+ 
     if (it.currNode() == front)
     {
         pushFront(val);
+        return;
     } else if (it.currNode() == back)
     {
         pushBack(val);
+        return;
     } else 
     {
         Node* t = new Node();
@@ -99,12 +116,14 @@ void Dll::popFront(Iterator& it)
 {
     it.setPos(front);
     removeNode(it);
+    length--;
 }
 
 void Dll::popBack(Iterator& it)
 {
     it.setPos(back);
     removeNode(it);
+    length--;
 }
 
 void Dll::removeNode(Iterator& it)
@@ -154,12 +173,32 @@ void Dll::printMe()
     Iterator t;
     t.setPos(front);
 
-
-    for (int i = 0; i < length; i++)
+    if (length > 1)
     {
-        cout << "Node value at position " << i << " is: " << t.getVal() << endl;
-        t.goNext();
+        for (int i = 0; i < length; i++)
+        {
+            cout << "Node value at position " << i << " is: " << t.getVal() << endl;
+            t.goNext();
+        }
+    } else cout << "List is empty" << endl;
+}
+
+void Dll::reset(Iterator& t)
+{
+
+    while (!isEmpty()) {
+        popFront(t);
     }
+    front = back = nullptr;
+}
 
-
+bool Dll::isEmpty()
+{
+    if (length <=0)
+    {
+        length = 0;
+        return true;
+    } else {
+        return false;
+    }
 }
