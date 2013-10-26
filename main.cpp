@@ -31,12 +31,14 @@ int main()
     dll.printMe();
 
 
-    cout << "----Testing removeNode " << endl;
+    cout << "----Testing removeNode, pop Front&Back " << endl;
     b.setPos(dll.getBegin());
     dll.removeNode(b);
     b.goNext();
     b.goNext(); 
     dll.removeNode(b);
+    dll.popBack(b);
+    dll.popFront(b);
     dll.printMe();
 
     cout << "----Testing pushNode " << endl;
