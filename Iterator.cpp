@@ -26,10 +26,39 @@ void Iterator::goNext()
     if (currN->next) currN = currN->next;
 }
 
+void Iterator::operator++()
+{
+    goNext();
+}
+
 void Iterator::goPrev()
 {
     if (currN->prev) currN = currN->prev; 
 }
+
+void Iterator::operator--()
+{
+    goPrev();
+}
+
+Iterator Iterator::operator+(int i)
+{
+    for(int h = 0; h < i; h++)
+    {
+        goNext();
+    }
+    return *this;
+}
+
+Iterator Iterator::operator-(int i)
+{
+    for(int h = 0; h < i; h++)
+    {
+        goPrev();
+    }
+    return *this;
+}
+
 
 int Iterator::getVal()
 {

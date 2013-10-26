@@ -43,11 +43,15 @@ int main()
     dll.pushNode(b, 1, 3);
     dll.printMe();
 
-    cout << "----Testing getDistance " << endl;
+    cout << "----Testing getDistance and operators overloads" << endl;
     b.setPos(dll.getBegin());
     b.goNext();
-    b.goNext();
-    b.goNext();
+    b++;
+    b++;
+    b--;
+    b++;
+    b = b-2;
+    b = b+2;
 
 
     Iterator e = dll.end();

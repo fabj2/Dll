@@ -20,9 +20,12 @@ class Iterator
 public:
     Iterator();
     Iterator(Node* n);
-    //Iterator(Iterator&);
     void goNext();
+    void operator++();
     void goPrev();
+    void operator--();
+    Iterator operator+(int);
+    Iterator operator-(int);
     int getVal();
     int getVal(const Iterator&);
     int getDistance(const Iterator&);
