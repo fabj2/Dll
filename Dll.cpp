@@ -173,7 +173,7 @@ void Dll::printMe()
     Iterator t;
     t.setPos(front);
 
-    if (length > 1)
+    if (length >= 1)
     {
         for (int i = 0; i < length; i++)
         {

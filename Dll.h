@@ -18,7 +18,6 @@ public:
     Iterator end();
     void pushFront(int);
     void pushBack(int);
-    void pushBack2(int);
     void popFront(Iterator&);
     void popBack(Iterator&);
     void pushNode(const Iterator&, int val, int pos);
